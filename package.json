@@ -1,0 +1,27 @@
+{
+  "name": "tomato-pm",
+  "version": "1.0.0",
+  "description": "Project management platform prototype",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Fegeterika/tomato-pm.git"
+  },
+  "author": "Jae Sung Song & Hyun Sung Song",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Fegeterika/tomato-pm/issues"
+  },
+  "homepage": "https://github.com/Fegeterika/tomato-pm#readme",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "cookie-parser": "^1.4.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "passport": "^0.4.0",
+    "passport-local": "^1.0.0"
+  }
+}

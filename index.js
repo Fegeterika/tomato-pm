@@ -10,13 +10,16 @@
  */
 
 // Initialization =====================================================
-var express = 		require('express'),
- 	app	 	=		express(),
- 	http	=		require('http').Server(app);
+var express 		= 		require('express'),
+ 	app	 			=		express(),
+ 	http			=		require('http').Server(app);
 
-var path	=		require('path');
-
-
+var path			=		require('path'),
+	bodyParser		=		require('body-parser'),
+	cookieParser	=		require('cookie-parser'),
+	passport		=		require('passport'),
+	session			=		require('express-session'),
+	flash			=		require('connect-flash');
 
 const PORT = 8003;
 

@@ -15,6 +15,10 @@ var passport = require('passport');
 
 // Define Controllers ==========================================================
 exports.showLanding = (req, res) => {
+  res.render('landing');
+}
+
+exports.showDashboard = (req, res) => {
   var date = new Date();
 	res.render('main', {time: date.getHours() + " : " + date.getMinutes(),
                       currTab: 'Home'});

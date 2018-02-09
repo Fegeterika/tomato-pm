@@ -15,14 +15,15 @@ var express         = require('express'),
 
 var passport = require('passport');
 
-var mysql = require('mysql');
-var config = require('../config/database.js');
-
-var connectDB = mysql.createConnection(config);
 // Require controller modules
 var mainPageCtr = require('../controllers/mainPage');
 
+// Define router ===============================================================
+
+// Landing page
 router.route('/').get(mainPageCtr.showLanding);
+
+router.route('/home').get(mainPageCtr.showDashboard);
 
 router.route('/login').get(mainPageCtr.showLogin);
 

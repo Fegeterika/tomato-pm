@@ -1,0 +1,2 @@
+Mode|IP_Addr|DBPort|User|Password
+dev|35.193.67.34|3306|tomatopm|Tomatopmdev921

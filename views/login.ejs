@@ -1,0 +1,26 @@
+<%- include ./partials/header.ejs %>
+<!-- Start of Body -->
+<div class="ui segment">
+  <% if (message.length > 0) { %>
+    <div class="ui negative message">
+      <i class="close icon"></i>
+      <div class="header">
+        <%= message %>
+      </div>
+      <p>
+        Please Log in again or sign up
+      </p>
+    </div>
+  <% } %>
+
+  Login Page!
+  <form action="/login" method="POST">
+    <input type="text" name="email" />
+    <input type="password" name="password" />
+    <button type="submit">Login</button>
+  </form>
+</div>
+
+<script src="js/main.js"></script>
+<!-- End of Body -->
+<%- include ./partials/footer.ejs %>

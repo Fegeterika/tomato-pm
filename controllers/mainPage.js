@@ -12,6 +12,7 @@
 // Initialization ==============================================================
 var passport = require('passport');
 
+var userModel = require('../models/userModel');
 
 // Define Controllers ==========================================================
 exports.showLanding = (req, res) => {
@@ -22,6 +23,14 @@ exports.showDashboard = (req, res) => {
   var date = new Date();
 	res.render('main', {time: date.getHours() + " : " + date.getMinutes(),
                       currTab: 'Home'});
+};
+
+exports.showProjects = (req, res) => {
+  var result = userModel.readListOfProjects(req.user.userid, req.user.cid, (rows) => {
+    console.log(rows);
+    res.locals.currTab = req.user;
+    res.render('projects', {projects: rows});
+  });
 };
 
 exports.showLogin = (req, res) => {
@@ -52,5 +61,5 @@ exports.signUpUser = (req, res) => {
 
 exports.logout = (req, res) => {
   req.logout();
-  res.redirect('/');
+  res.redirect('/home');
 }

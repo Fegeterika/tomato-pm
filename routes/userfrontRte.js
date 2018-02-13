@@ -25,17 +25,19 @@ router.route('/').get(mainPageCtr.showLanding);
 
 router.route('/home').get(mainPageCtr.showDashboard);
 
+router.route('/projects').get(mainPageCtr.showProjects);
+
 router.route('/login').get(mainPageCtr.showLogin);
 
 router.route('/login').post(passport.authenticate('local-login', {
-  successRedirect: '/',
+  successRedirect: '/home',
   failureRedirect: '/login',
   failureFlash: true
   }));
 router.route('/signup').get(mainPageCtr.showSignUp);
 
 router.route('/signup').post(passport.authenticate('local-signup', {
-  successRedirect: '/',
+  successRedirect: '/home',
   failureRedirect: '/signup',
   failureFlash: true
   }));

@@ -1,0 +1,14 @@
+<%- include partials/header.ejs %>
+<!-- Start of Body -->
+<div class="ui segment">
+		<h1>List of your projects</h1>
+		<ul>
+			<% projects.forEach((proj) => { %>
+				<li><%= proj.name + " | " + proj.description %></li>
+			<% }) %>
+		</ul>
+</div>
+
+<script src="assets/js/main.js"></script>
+<!-- End of Body -->
+<%- include partials/footer.ejs %>

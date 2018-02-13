@@ -1,0 +1,28 @@
+companies
+name: tomato corp
+
+users
+email: tester
+cid: 1 (FK)
+
+permissions
+cid: 1 (FK)
+name: tc-default permission
+
+user_perm_assign
+permid: 1 (FK)
+userid: 1 (FK)
+read_perm: 1
+write_perm: 1
+grant_perm: 1
+
+projects
+cid: 1 (FK)
+permid: 1 (FK)
+name: our very first project
+description: this is the very first project under testing
+
+cid: 1 (FK)
+permid: (FK)
+name: give second one a shot
+description: this is the second project. Hope it works too

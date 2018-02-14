@@ -1,14 +1,38 @@
 <%- include partials/header.ejs %>
 <!-- Start of Body -->
+<button class="ui blue button">Refresh</button>
 <div class="ui segment">
-		<h1>List of your projects</h1>
-		<ul>
-			<% projects.forEach((proj) => { %>
-				<li><%= proj.name + " | " + proj.description %></li>
-			<% }) %>
-		</ul>
+	<ul></ul>
 </div>
 
 <script src="assets/js/main.js"></script>
+<script>
+	var container = document.querySelector('.ui.segment ul');
+
+	var request = new XMLHttpRequest();
+
+	function refresh() {
+		request.onreadystatechange = () => {
+			if (request.readyState === 4 && request.status === 200) {
+				var json = JSON.parse(request.responseText);
+				while (container.firstChild) {
+					container.removeChild(container.firstChild);
+				}
+				for (let i = 0; i < json.length; i++) {
+					let line = json[i].name + ' | ' + json[i].description;
+					let project = document.createElement('li');
+					project.textContent = line;
+					container.appendChild(project);
+				}
+			}
+		}
+		request.open('GET', './api/projects');
+	}
+
+	document.querySelector('button').addEventListener('click', (event) => {
+		refresh();
+		request.send();
+	});
+</script>
 <!-- End of Body -->
 <%- include partials/footer.ejs %>

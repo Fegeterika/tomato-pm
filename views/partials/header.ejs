@@ -23,11 +23,11 @@
       <a class="item">Result</a>
       <div class="right menu">
         <% if (!currentUser) { %>
-          <a class="ui item"><i class="alarm outline icon"></i></a>
           <a class="ui item" href="/login">Log in</a>
           <a class="ui item" href="/signup">Sign up</a>
         <% } else { %>
-          <span>Signed in as: <%= currentUser.email %></span>
+          <a class="ui item"><i class="alarm outline icon"></i></a>
+          <a class="ui item">Signed in as: <%= currentUser.email %></a>
           <a class="ui item" href="/logout">Log out</a>
         <% } %>
       </div>

@@ -24,7 +24,9 @@ var path = require('path'),
 // Load configuration
 var config = require('./config')();
 
-var userfrontRte    = require('./routes/userfrontRte.js');
+// Load routes
+var publicRte = require('./routes/publicRte');
+var projectAPIRte = require('./routes/api/projectAPIRte');
 
 // Configuration ===============================================================
 app.set('view engine', 'ejs');
@@ -39,7 +41,7 @@ app.use(flash());
 app.use(session({secret: 'tomatopm1089', resave: false, saveUninitialized: false}));
 app.use(passport.initialize());
 app.use(passport.session());
-require('./config/passport.js')(passport);
+require('./config/passport')(passport);
 
 // Expose req.user to all pages
 app.use((req, res, next) => {
@@ -50,7 +52,8 @@ app.use((req, res, next) => {
 })
 
 // routes
-app.use('/', userfrontRte);
+app.use('/', publicRte);
+app.use('/api', projectAPIRte);
 
 // Launch a web server =========================================================
 http.listen(config.port, () => {

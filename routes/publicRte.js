@@ -1,5 +1,5 @@
 /**
- * userfrontRte.js
+ * publicRte.js
  *
  * contains all routes for outward pages (public facing)
  *

@@ -19,6 +19,19 @@ CREATE TABLE users (
   FOREIGN KEY(cid) REFERENCES companies(cid)
 );
 
+CREATE TABLE groups (
+  groupid INTEGER PRIMARY KEY AUTO_INCREMENT,
+  name VARCHAR(256),
+  description TEXT,
+  FOREIGN KEY (cid) REFERENCES companies(cid) ON DELETE CASCADE ON UPDATE CASCADE
+);
+
+CREATE TABLE user_group_assign (
+  assignid INTEGER PRIMARY KEY AUTO_INCREMENT,
+  FOREIGN KEY(userid) REFERENCES users(userid),
+  FOREIGN KEY(groupid) REFERENCES groups(groupid)
+);
+
 CREATE TABLE permissions (
   permid INTEGER PRIMARY KEY AUTO_INCREMENT,
   cid INTEGER,
@@ -46,3 +59,6 @@ CREATE TABLE user_perm_assign (
   write_perm BIT(1),
   grant_perm BIT(1)
 );
+
+-- Insert sample records
+INSERT INTO

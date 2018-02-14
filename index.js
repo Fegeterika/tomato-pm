@@ -18,11 +18,13 @@ var path = require('path'),
   	bodyParser = require('body-parser'),
   	cookieParser = require('cookie-parser'),
   	passport = require('passport'),
-  	session = require('express-session'),
+  	expSession = require('express-session'),
+    RedisStore = require('connect-redis')(expSession),
   	flash = require('connect-flash');
 
 // Load configuration
 var config = require('./config')();
+var redisConf = require('./config/redis');
 
 // Load routes
 var publicRte = require('./routes/publicRte');
@@ -35,13 +37,24 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cookieParser());
 app.use(bodyParser());
-app.use(flash());
 
-// passport
-app.use(session({secret: 'tomatopm1089', resave: false, saveUninitialized: false}));
+// Session & passport Configuration
+// Using RedisStore
+app.use(expSession({store: new RedisStore(redisConf),
+                 secret: 'tomatopm1089',
+                 resave: false,
+                 saveUninitialized: false}));
+
+// Using local memstore
+// app.use(session({secret: 'tomatopm1089',
+//                 resave: false,
+//                 saveUninitialized: false}));
+
 app.use(passport.initialize());
 app.use(passport.session());
 require('./config/passport')(passport);
+
+app.use(flash());
 
 // Expose req.user to all pages
 app.use((req, res, next) => {

@@ -10,10 +10,12 @@
  */
 
 // Initialization ==============================================================
-var express         = require('express'),
-    router          = express.Router();
+var express = require('express'),
+    router = express.Router();
 
 var passport = require('passport');
+// Require auth middleware
+var auth = require('../config/auth');
 
 // Require controller modules
 var mainPageCtr = require('../controllers/mainPage');
@@ -25,7 +27,7 @@ router.route('/').get(mainPageCtr.showLanding);
 
 router.route('/home').get(mainPageCtr.showDashboard);
 
-router.route('/projects').get(mainPageCtr.showProjects);
+router.route('/projects').get(auth.isAuthenticated, mainPageCtr.showProjects);
 
 router.route('/login').get(mainPageCtr.showLogin);
 

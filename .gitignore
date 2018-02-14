@@ -2,3 +2,4 @@ node_modules/
 public/semantic/
 public/assets/img/
 config/database.js
+config/redis.js

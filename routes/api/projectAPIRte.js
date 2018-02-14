@@ -13,7 +13,8 @@
 var express = require('express'),
     router = express.Router();
 
-var passport = require('passport');
+// Require auth middleware
+var auth = require('../../config/auth');
 
 // Require controller modules
 var projectAPI = require('../../controllers/api/projectAPI');
@@ -21,6 +22,9 @@ var projectAPI = require('../../controllers/api/projectAPI');
 // Define router ===============================================================
 
 // Landing page
-router.route('/projects').get(projectAPI.readAllProjectsForUser);
+router.route('/projects').get(auth.isAuthenticated, projectAPI.readAllProjectsForCurrentUser);
+
+// param api for testing
+router.route('/projects/:cid/:uid').get(projectAPI.readAllProjectsForUser);
 
 module.exports = router;

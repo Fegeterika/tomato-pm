@@ -32,3 +32,14 @@
         <% } %>
       </div>
     </div> <!-- ends menu bar -->
+    <% if (error.length > 0) { %>
+      <div class="ui negative message">
+        <i class="close icon"></i>
+        <div class="header">
+          <%= error %>
+        </div>
+        <p>
+          Please Log in again or sign up
+        </p>
+      </div>
+    <% } %>

@@ -30,12 +30,12 @@ exports.showProjects = (req, res) => {
 
 exports.showLogin = (req, res) => {
   res.locals.currTab = 'Home';
-  res.render('login', {message: req.flash('loginMessage')});
+  res.render('login');
 };
 
 exports.showSignUp = (req, res) => {
   res.locals.currTab = 'Home';
-  res.render('signup', {message: req.flash('signupMessage')});
+  res.render('signup');
 };
 
 exports.attemptLogin = (req, res) => {

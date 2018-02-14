@@ -15,9 +15,15 @@ var passport = require('passport');
 var projectModel = require('../../models/projectModel');
 
 // Define Controllers ==========================================================
+exports.readAllProjectsForCurrentUser = (req, res) => {
+    var result = projectModel.readListOfProjects(req.user.userid, req.user.cid, (rows) => {
+    console.log(rows);
+    res.send(rows);
+  });
+};
+
 exports.readAllProjectsForUser = (req, res) => {
-  var result = projectModel.readListOfProjects(1, 1, (rows) => {
-  //var result = userModel.readListOfProjects(req.user.userid, req.user.cid, (rows) => {
+    var result = projectModel.readListOfProjects(req.params.uid, req.params.cid, (rows) => {
     console.log(rows);
     res.send(rows);
   });

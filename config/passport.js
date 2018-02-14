@@ -22,6 +22,7 @@ var connectDB = mysql.createConnection(config);
 module.exports = (passport) => {
 
   // Persist login session
+  // Replace with hashing
   passport.serializeUser( (user, done) => {
     done(null, user.userid);
   });
@@ -46,7 +47,7 @@ module.exports = (passport) => {
       if (err) { return done(err) };
       if (rows.length) {
         // User already exists
-        return done(null, false, req.flash('signupMessage', "Account with this email already exists"));
+        return done(null, false, req.flash('error', "Account with this email already exists"));
       } else {
         // User does not exist. Sign up user
         var newUser = new Object();
@@ -80,11 +81,11 @@ module.exports = (passport) => {
 
       // If no user is found
       if (!rows.length) {
-        return done(null, false, req.flash('loginMessage', "No Account with this email found"));
+        return done(null, false, req.flash('error', "No Account with this email found"));
       } else {
         // If password is wrong
         if (!userModel.checkPassword(rows[0], password)) {
-          return done(null, false, req.flash('loginMessage', "Wrong email or password"));
+          return done(null, false, req.flash('error', "Wrong email or password"));
         }
         return done(null, rows[0]);
       }

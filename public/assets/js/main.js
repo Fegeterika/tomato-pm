@@ -9,17 +9,13 @@
  * @see README
  */
 
-markActiveTab();
 msgCloseButton();
 
-function markActiveTab() {
-  var currTab = document.getElementById('currTab').textContent;
-  var menuItems = document.querySelectorAll('.item');
-
-  for (let i = 0; i < menuItems.length; i++) {
-    menuItems[i].classList.remove('active');
-    if (menuItems[i].textContent === currTab) {
-      menuItems[i].classList.add('active');
-    }
+function msgCloseButton() {
+  var msg = document.querySelector('.close.icon')
+  if (msg) {
+    msg.addEventListener('click', (event) => {
+      msg.parentNode.parentNode.removeChild(msg.parentNode);
+    });
   }
-}
+};

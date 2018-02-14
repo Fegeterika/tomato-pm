@@ -20,6 +20,7 @@ exports.showLanding = (req, res) => {
 }
 
 exports.showDashboard = (req, res) => {
+  res.locals.currTab = 'Home';
   var date = new Date();
 	res.render('main', {time: date.getHours() + " : " + date.getMinutes(),
                       currTab: 'Home'});
@@ -28,19 +29,19 @@ exports.showDashboard = (req, res) => {
 exports.showProjects = (req, res) => {
   var result = userModel.readListOfProjects(req.user.userid, req.user.cid, (rows) => {
     console.log(rows);
-    res.locals.currTab = req.user;
+    res.locals.currTab = 'Projects';
     res.render('projects', {projects: rows});
   });
 };
 
 exports.showLogin = (req, res) => {
-  res.render('login', {currTab: 'Home',
-                       message: req.flash('loginMessage')});
+  res.locals.currTab = 'Home';
+  res.render('login', {message: req.flash('loginMessage')});
 };
 
 exports.showSignUp = (req, res) => {
-  res.render('signup', {currTab: 'Home',
-                        message: req.flash('signupMessage')});
+  res.locals.currTab = 'Home';
+  res.render('signup', {message: req.flash('signupMessage')});
 };
 
 exports.attemptLogin = (req, res) => {

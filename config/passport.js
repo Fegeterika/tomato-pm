@@ -43,8 +43,6 @@ module.exports = (passport) => {
     checkQuery = mysql.format(checkQuery, queryInsert);
 
     connectDB.query(checkQuery, (err, rows) => {
-      console.log(rows);
-      console.log("above row object");
       if (err) { return done(err) };
       if (rows.length) {
         // User already exists
@@ -82,12 +80,10 @@ module.exports = (passport) => {
 
       // If no user is found
       if (!rows.length) {
-        console.log("No account");
         return done(null, false, req.flash('loginMessage', "No Account with this email found"));
       } else {
         // If password is wrong
         if (!userModel.checkPassword(rows[0], password)) {
-          console.log("wrong PW");
           return done(null, false, req.flash('loginMessage', "Wrong email or password"));
         }
         return done(null, rows[0]);

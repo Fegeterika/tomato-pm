@@ -42,12 +42,13 @@ exports.readListOfProjects = (userid, companyid, callback) => {
 
   connectDB.query(checkQuery, (err, rows) => {
     console.log("Getting the list of projects for " + userid);
-    if (err) callback(0);
-    if (rows.length) {
+    if (err) {
+      callback(false);
+    } else if (rows.length) {
       console.log("done");
       callback(rows);
     } else {
-      callback(0);
+      callback([]);
     }
   });
 }

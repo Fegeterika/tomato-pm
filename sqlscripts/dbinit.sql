@@ -21,6 +21,7 @@ CREATE TABLE users (
 
 CREATE TABLE groups (
   groupid INTEGER PRIMARY KEY AUTO_INCREMENT,
+  cid INTEGER,
   name VARCHAR(256),
   description TEXT,
   FOREIGN KEY (cid) REFERENCES companies(cid) ON DELETE CASCADE ON UPDATE CASCADE
@@ -28,6 +29,8 @@ CREATE TABLE groups (
 
 CREATE TABLE user_group_assign (
   assignid INTEGER PRIMARY KEY AUTO_INCREMENT,
+  userid INTEGER,
+  groupid INTEGER,
   FOREIGN KEY(userid) REFERENCES users(userid),
   FOREIGN KEY(groupid) REFERENCES groups(groupid)
 );

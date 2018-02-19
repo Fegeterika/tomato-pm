@@ -18,7 +18,7 @@ var projectModel = require('../../models/projectModel');
 
 
 exports.readAllProjectsForCurrentUser = (req, res) => {
-    var result = projectModel.readListOfProjects(req.user.userid, req.user.cid, (rows) => {
+    var result = projectModel.readProjectsForUserAndGroup(req.user.userid, req.user.cid, (rows) => {
     console.log(rows);
     res.send(rows);
   });
@@ -26,7 +26,7 @@ exports.readAllProjectsForCurrentUser = (req, res) => {
 
 // param api for testing
 exports.readAllProjectsForUser = (req, res) => {
-    var result = projectModel.readListOfProjects(req.params.uid, req.params.cid, (rows) => {
+    var result = projectModel.readProjects(req.params.uid, req.params.cid, (rows) => {
     console.log(rows);
     res.send(rows);
   });

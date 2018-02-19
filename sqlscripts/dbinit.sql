@@ -63,5 +63,16 @@ CREATE TABLE user_perm_assign (
   grant_perm BIT(1)
 );
 
+CREATE TABLE group_perm_assign (
+  assignid INTEGER PRIMARY KEY AUTO_INCREMENT,
+  permid INTEGER,
+  groupid INTEGER,
+  FOREIGN KEY(permid) REFERENCES permissions(permid),
+  FOREIGN KEY(groupid) REFERENCES groups(groupid),
+  read_perm BIT(1),
+  write_perm BIT(1),
+  grant_perm BIT(1)
+);
+
 -- Insert sample records
 INSERT INTO

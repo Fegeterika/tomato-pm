@@ -27,5 +27,5 @@ var config = {
 }
 
 module.exports = (mode) => {
-  return config[mode] || process.argv[2] || 'local' || config['local']
+  return config[mode] || config[process.argv[2]] || 'local' || config['local']
 }

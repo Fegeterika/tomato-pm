@@ -74,5 +74,18 @@ CREATE TABLE group_perm_assign (
   grant_perm BIT(1)
 );
 
+CREATE TABLE tasks (
+  taskid INTEGER PRIMARY KEY AUTO_INCREMENT,
+  projectid INTEGER NOT NULL,
+  assigneeid INTEGER,
+  parentid INTEGER,
+  taskname VARCHAR(256),
+  description TEXT,
+  assigned_date DATETIME,
+  taskstatus VARCHAR(50)
+  FOREIGN KEY(projectid) REFERENCES projects(projectid),
+  FOREIGN KEY(assigneeid) REFERENCES users(userid),
+  FOREIGN KEY(parentid) REFERENCES tasks(taskid)
+);
 -- Insert sample records
 INSERT INTO

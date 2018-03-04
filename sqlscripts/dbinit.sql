@@ -21,6 +21,7 @@ CREATE TABLE users (
 
 CREATE TABLE groups (
   groupid INTEGER PRIMARY KEY AUTO_INCREMENT,
+  cid INTEGER,
   name VARCHAR(256),
   description TEXT,
   FOREIGN KEY (cid) REFERENCES companies(cid) ON DELETE CASCADE ON UPDATE CASCADE
@@ -28,6 +29,8 @@ CREATE TABLE groups (
 
 CREATE TABLE user_group_assign (
   assignid INTEGER PRIMARY KEY AUTO_INCREMENT,
+  userid INTEGER,
+  groupid INTEGER,
   FOREIGN KEY(userid) REFERENCES users(userid),
   FOREIGN KEY(groupid) REFERENCES groups(groupid)
 );
@@ -60,5 +63,29 @@ CREATE TABLE user_perm_assign (
   grant_perm BIT(1)
 );
 
+CREATE TABLE group_perm_assign (
+  assignid INTEGER PRIMARY KEY AUTO_INCREMENT,
+  permid INTEGER,
+  groupid INTEGER,
+  FOREIGN KEY(permid) REFERENCES permissions(permid),
+  FOREIGN KEY(groupid) REFERENCES groups(groupid),
+  read_perm BIT(1),
+  write_perm BIT(1),
+  grant_perm BIT(1)
+);
+
+CREATE TABLE tasks (
+  taskid INTEGER PRIMARY KEY AUTO_INCREMENT,
+  projectid INTEGER NOT NULL,
+  assigneeid INTEGER,
+  parentid INTEGER,
+  taskname VARCHAR(256),
+  description TEXT,
+  assigned_date DATETIME,
+  taskstatus VARCHAR(50)
+  FOREIGN KEY(projectid) REFERENCES projects(projectid),
+  FOREIGN KEY(assigneeid) REFERENCES users(userid),
+  FOREIGN KEY(parentid) REFERENCES tasks(taskid)
+);
 -- Insert sample records
 INSERT INTO

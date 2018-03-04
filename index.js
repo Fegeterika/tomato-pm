@@ -29,6 +29,7 @@ var redisConf = require('./config/redis');
 // Load routes
 var publicRte = require('./routes/publicRte');
 var projectAPIRte = require('./routes/api/projectAPIRte');
+var taskAPIRte = require('./routes/api/taskAPIRte');
 
 // Configuration ===============================================================
 app.set('view engine', 'ejs');
@@ -68,6 +69,7 @@ app.use((req, res, next) => {
 // routes
 app.use('/', publicRte);
 app.use('/api', projectAPIRte);
+app.use('/api', taskAPIRte);
 
 // Launch a web server =========================================================
 http.listen(config.port, () => {

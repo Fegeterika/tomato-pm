@@ -13,7 +13,10 @@
 var express = require('express'),
     router = express.Router();
 
+var path = require('path');
+
 var passport = require('passport');
+
 // Require auth middleware
 var auth = require('../config/auth');
 
@@ -46,5 +49,9 @@ router.route('/signup').post(passport.authenticate('local-signup', {
 //router.route('/signup').post(mainPageCtr.signUpUser);
 
 router.route('/logout').get(mainPageCtr.logout);
+
+router.route('/app').get((req, res) => {
+  res.sendFile(path.resolve(__dirname, '../public', 'dist', 'index.html'));
+});
 
 module.exports = router;

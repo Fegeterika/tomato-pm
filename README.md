@@ -1,4 +1,5 @@
 # tomato-pm
-Project management platform prototype
+Project management & Task tracking platform prototype
 
-![architecture 1.0](https://github.com/Fegeterika/tomato-pm/master/_readme-resources/architecture_1.0.png)
+<h4>Preliminary Architecture</h4>
+![architecture 1.0](https://github.com/Fegeterika/tomato-pm/blob/master/_readme-resources/architecture_1.0.png)

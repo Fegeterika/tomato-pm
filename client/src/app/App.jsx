@@ -11,6 +11,11 @@
 
 // Initialization ==============================================================
 import React, { Component } from 'react';
+import { Switch, Route } from 'react-router-dom';
+import Navbar from './nav/Navbar.jsx'
+
+const Dashboard = () => (<div>DASHBOARD PAGE</div>);
+const Projects = () => (<div>PROJECT PAGE</div>);
 
 class App extends Component {
   constructor(props) {
@@ -20,7 +25,15 @@ class App extends Component {
   render() {
     return (
       <div>
-        Yay, got react to work
+        <Navbar />
+        <Switch>
+          <Route exact path="/dashboard" render={props => (
+            <Dashboard {...props}/>)}
+          />
+          <Route exact path="/" render={props => (
+            <Projects {...props}/>)}
+          />
+        </Switch>
       </div>
     );
   }

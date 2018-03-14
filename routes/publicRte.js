@@ -50,8 +50,4 @@ router.route('/signup').post(passport.authenticate('local-signup', {
 
 router.route('/logout').get(mainPageCtr.logout);
 
-router.route('/app').get((req, res) => {
-  res.sendFile(path.resolve(__dirname, '../public', 'dist', 'index.html'));
-});
-
 module.exports = router;

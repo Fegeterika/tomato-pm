@@ -71,6 +71,11 @@ app.use('/', publicRte);
 app.use('/api', projectAPIRte);
 app.use('/api', taskAPIRte);
 
+app.route('*').get((req, res) => {
+  res.sendFile(path.resolve(__dirname, './public', 'dist', 'index.html'));
+});
+
+
 // Launch a web server =========================================================
 http.listen(config.port, () => {
 	console.log("Server opened at port: " + config.port);
